@@ -20,7 +20,7 @@ cnx=st.connection("snowflake")
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit_name'))
 #st.dataframe(data=my_dataframe, use_container_width=True)
-
+st.write(my_dataframe)
 #Converting  snowpark dataframe into Pandas dataframe so we can use the LOC function
 #pd_df=my_dataframe.to_pandas()
 
