@@ -32,11 +32,11 @@ if ingredients_list:
     for fruit_chosen in ingredients_list:
         ingredients_string +=fruit_chosen + ' '
         #New Section to display nutrition information
-          fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-          fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
-      my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
+         fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+    my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
             values ('""" + ingredients_string + """','""" + name_of_order +"""')"""
-       time_to_insert = st.button('Submit')
+    time_to_insert = st.button('Submit')
     # This if statement executes when submit button has a value
     if time_to_insert:
     #if  ingredients_string: The if statement executes when ingredients_string has value
