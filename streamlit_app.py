@@ -1,6 +1,7 @@
 # Import python packages
 import streamlit as st
 from snowflake.snowpark.functions import col 
+import requests
  
 
 # Write directly to the app
@@ -42,4 +43,8 @@ if ingredients_list:
     #if  ingredients_string: The if statement executes when ingredients_string has value
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered '+ name_of_order+ '!', icon="✅")
-  
+
+
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
+
