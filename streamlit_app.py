@@ -22,7 +22,7 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
 #Converting  snowpark dataframe into Pandas dataframe so we can use the LOC function
-pd_df=my_dataframe.to_pandas()
+#pd_df=my_dataframe.to_pandas()
 
 ingredients_list = st.multiselect(
     'Choose upto five fruits:'
@@ -36,13 +36,13 @@ if ingredients_list:
 
     for fruit_chosen in ingredients_list:
         ingredients_string +=fruit_chosen + ' '
-        search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
-        st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
+        #search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+        #st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
 
-        st.subheader(fruit_chosen+' Nutritional Information')
+        #st.subheader(fruit_chosen+' Nutritional Information')
         #New Section to display nutrition information
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_chosen)
-        fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+        #fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_chosen)
+        #fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
      
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
             values ('""" + ingredients_string + """','""" + name_of_order +"""')"""
