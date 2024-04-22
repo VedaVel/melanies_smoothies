@@ -13,7 +13,7 @@ st.write(
 )
 #Enter Customer Name
 name_of_order = st.text_input('Name on Smoothie:', '')
-st.write('The name on your Smoothie will be:',name_of_order )
+st.write('The name on Smoothie will be:',name_of_order )
 st.write('hello')
 
 #Select Fruits from table
