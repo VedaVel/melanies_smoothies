@@ -31,12 +31,11 @@ if ingredients_list:
 
     for fruit_chosen in ingredients_list:
         ingredients_string +=fruit_chosen + ' '
-   # st.write(ingredients_string)
-
+        #New Section to display nutrition information
+         fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
             values ('""" + ingredients_string + """','""" + name_of_order +"""')"""
-    #st.write(my_insert_stmt)
-    #st.stop()
     time_to_insert = st.button('Submit')
     # This if statement executes when submit button has a value
     if time_to_insert:
@@ -44,8 +43,4 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered '+ name_of_order+ '!', icon="✅")
 
-#New Section to display nutrition information
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-#st.text(fruityvice_response.json())
-fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 
